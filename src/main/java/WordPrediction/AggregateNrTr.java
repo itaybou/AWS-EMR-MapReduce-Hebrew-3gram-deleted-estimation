@@ -69,9 +69,9 @@ public class AggregateNrTr {
             long sum = 0;
             String operation = splitR.getFirst().toString();
 
-            // Count 3Grams under the same r value
+            // Count 3Gram sums under the same r value
             for (LongWritable count : threeGramCount) {
-                sum += count.get(); // Add intermediate sums
+                sum += count.get(); // Add total sums (combiner intermediate sums)
             }
 
             context.write(splitR.getSecond(), new TextLongPairWritable(new Text(operation), new LongWritable(sum)));
