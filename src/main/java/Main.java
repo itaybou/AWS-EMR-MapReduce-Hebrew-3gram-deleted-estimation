@@ -1,13 +1,12 @@
-import WordPrediction.OccurrencesThreeGramComparable;
 import software.amazon.awssdk.services.ec2.model.InstanceType;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.emr.EmrClient;
 import software.amazon.awssdk.services.emr.model.*;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Main {
     private static final Region REGION = Region.US_EAST_1;

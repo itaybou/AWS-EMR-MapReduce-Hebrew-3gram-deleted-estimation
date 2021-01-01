@@ -14,7 +14,6 @@ public class SplitCorpus {
 
         private static final Pattern HEBREW_3GRAM_REGEX = Pattern.compile("^(?:[א-ת]+[א-ת\\d+ ]+|[א-ת\\d+ ]+[א-ת]+|[א-ת\\d+ ]+[א-ת]+[א-ת\\d+ ]+)$");
 
-
         @Override
         public void map(LongWritable lineId, Text line, Context context)
                 throws IOException, InterruptedException {

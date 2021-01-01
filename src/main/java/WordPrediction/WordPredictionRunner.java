@@ -13,7 +13,6 @@ import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 import java.io.IOException;
-import java.time.LocalTime;
 
 public class WordPredictionRunner {
     private static String inputCorpusPath;
@@ -22,8 +21,7 @@ public class WordPredictionRunner {
 
     private static long N;
 
-    public static void main(String[] args)
-            throws IOException, InterruptedException, ClassNotFoundException {
+    public static void main(String[] args) throws IOException {
 
         if (args.length < 2) {
             System.err.println("Wrong argument count received.\nExpected <input-corpus-path> <output-s3-path>.");

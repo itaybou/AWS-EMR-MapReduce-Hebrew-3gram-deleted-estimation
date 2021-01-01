@@ -9,7 +9,6 @@ import org.apache.hadoop.mapreduce.Partitioner;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 public class JoinNrTrThreeGrams {
     public static class ThreeGramMapperClass extends Mapper<LongWritable, Text, OccurrencesThreeGramComparable, TextPairWritable> {
