@@ -55,7 +55,9 @@ public class ProbabilityThreeGramComparable implements WritableComparable<Probab
 
     @Override
     public int hashCode() {
-        return threeGram.toString().hashCode();
+        String[] splitted = threeGram.toString().split(" ");
+        String twoWords = String.format("%s %s", splitted[0], splitted[1]);
+        return twoWords.hashCode();
     }
 
     public Text getThreeGram() {

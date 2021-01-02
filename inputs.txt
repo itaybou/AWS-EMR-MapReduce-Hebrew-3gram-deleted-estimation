@@ -1,3 +1,4 @@
-ass2predtestscombiner words.jar
-ass2predtestscombiner
-8
+<input-bucket> <input-jar-file-name>
+<output-bucket>
+<worker-instance-count (0 < x < 10)>
+<use-local-aggregation (true or false)>

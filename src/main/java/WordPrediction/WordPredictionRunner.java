@@ -17,6 +17,7 @@ import java.io.IOException;
 public class WordPredictionRunner {
     private static String inputCorpusPath;
     private static String outputBucketPath;
+    private static boolean useLocalAggregation;
     private static final String LOG_PATH = "/log-files/";
 
     private static long N;
@@ -30,6 +31,7 @@ public class WordPredictionRunner {
 
         inputCorpusPath = args[0];
         outputBucketPath = args[1];
+        useLocalAggregation = Boolean.parseBoolean(args[2]);
 
         // Split Corpus
         Configuration splitCorpusConfig = new Configuration();
@@ -94,7 +96,9 @@ public class WordPredictionRunner {
         job.setJarByClass(SplitCorpus.class);
         job.setMapperClass(SplitCorpus.MapperClass.class);
         job.setPartitionerClass(SplitCorpus.PartitionerClass.class);
-        job.setCombinerClass(SplitCorpus.CombinerClass.class);  // Split Corpus Combiner
+        if(useLocalAggregation) {
+            job.setCombinerClass(SplitCorpus.CombinerClass.class);  // Split Corpus Combiner
+        }
         job.setReducerClass(SplitCorpus.ReducerClass.class);
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(LongPairWritable.class);
@@ -108,7 +112,9 @@ public class WordPredictionRunner {
         job.setJarByClass(AggregateNrTr.class);
         job.setMapperClass(AggregateNrTr.MapperClass.class);
         job.setPartitionerClass(AggregateNrTr.PartitionerClass.class);
-        job.setCombinerClass(AggregateNrTr.CombinerClass.class); // Aggregate Nr Tr Combiner
+        if (useLocalAggregation) {
+          job.setCombinerClass(AggregateNrTr.CombinerClass.class); // Aggregate Nr Tr Combiner
+        }
         job.setReducerClass(AggregateNrTr.ReducerClass.class);
         job.setMapOutputKeyClass(TextLongPairWritable.class);
         job.setMapOutputValueClass(LongWritable.class);
