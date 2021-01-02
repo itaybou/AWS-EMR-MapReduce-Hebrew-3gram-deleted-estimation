@@ -52,44 +52,44 @@ Using the python script in the statistics directory the following statstics char
 ### Input Output Records Statistics:
 *With local aggregation using a Combiner:*
 ![Combiner Input Output Records](https://github.com/itaybou/AWS-Hadoop-EMR-MapReduce-Hebrew-3gram-deleted-estimation/blob/main/statistics/In_Out_Combiner.png)
-|    | Status      | Statistic              | Stage                        |     Value |
-|----|-------------|------------------------|------------------------------|-----------|
-|  0 | No_combiner | Map input records      | Split Corpus                 | 163471963 |
-|  1 | No_combiner | Map output records     | Split Corpus                 |  71298947 |
-|  2 | No_combiner | Combine input records  | Split Corpus                 |         0 |
-|  3 | No_combiner | Combine output records | Split Corpus                 |         0 |
-|  4 | No_combiner | Reduce input records   | Split Corpus                 |  71298947 |
-|  5 | No_combiner | Reduce output records  | Split Corpus                 |   1691386 |
-|  6 | No_combiner | Map input records      | Aggregate Nr                 |   1691386 |
-|  7 | No_combiner | Map output records     | Aggregate Nr                 |   3382772 |
-|  8 | No_combiner | Combine input records  | Aggregate Nr                 |         0 |
-|  9 | No_combiner | Combine output records | Aggregate Nr                 |         0 |
-| 10 | No_combiner | Reduce input records   | Aggregate Nr                 |   3382772 |
-| 11 | No_combiner | Reduce output records  | Aggregate Nr                 |      6888 |
-| 12 | No_combiner | Map input records      | Aggregate Tr                 |   1691386 |
-| 13 | No_combiner | Map output records     | Aggregate Tr                 |   3382772 |
-| 14 | No_combiner | Combine input records  | Aggregate Tr                 |         0 |
-| 15 | No_combiner | Combine output records | Aggregate Tr                 |         0 |
-| 16 | No_combiner | Reduce input records   | Aggregate Tr                 |   3382772 |
-| 17 | No_combiner | Reduce output records  | Aggregate Tr                 |      6888 |
-| 18 | No_combiner | Map input records      | Join Nr Tr 3grams            |   1705162 |
-| 19 | No_combiner | Map output records     | Join Nr Tr 3grams            |   6779320 |
-| 20 | No_combiner | Combine input records  | Join Nr Tr 3grams            |         0 |
-| 21 | No_combiner | Combine output records | Join Nr Tr 3grams            |         0 |
-| 22 | No_combiner | Reduce input records   | Join Nr Tr 3grams            |   6779320 |
-| 23 | No_combiner | Reduce output records  | Join Nr Tr 3grams            |   6760704 |
-| 24 | No_combiner | Map input records      | Calculate deleted estimation |   6760704 |
-| 25 | No_combiner | Map output records     | Calculate deleted estimation |   6760704 |
-| 26 | No_combiner | Combine input records  | Calculate deleted estimation |         0 |
-| 27 | No_combiner | Combine output records | Calculate deleted estimation |         0 |
-| 28 | No_combiner | Reduce input records   | Calculate deleted estimation |   6760704 |
-| 29 | No_combiner | Reduce output records  | Calculate deleted estimation |   1690176 |
-| 30 | No_combiner | Map input records      | Sort deleted estimation      |   1690176 |
-| 31 | No_combiner | Map output records     | Sort deleted estimation      |   1690176 |
-| 32 | No_combiner | Combine input records  | Sort deleted estimation      |         0 |
-| 33 | No_combiner | Combine output records | Sort deleted estimation      |         0 |
-| 34 | No_combiner | Reduce input records   | Sort deleted estimation      |   1690176 |
-| 35 | No_combiner | Reduce output records  | Sort deleted estimation      |   1690176 |
+|    | Status   | Statistic              | Stage                        |     Value |
+|----|----------|------------------------|------------------------------|-----------|
+|  0 | Combiner | Map input records      | Split Corpus                 | 163471963 |
+|  1 | Combiner | Map output records     | Split Corpus                 |  71298947 |
+|  2 | Combiner | Combine input records  | Split Corpus                 |  71298947 |
+|  3 | Combiner | Combine output records | Split Corpus                 |   3382828 |
+|  4 | Combiner | Reduce input records   | Split Corpus                 |   3382828 |
+|  5 | Combiner | Reduce output records  | Split Corpus                 |   1691386 |
+|  6 | Combiner | Map input records      | Aggregate Nr                 |   1691386 |
+|  7 | Combiner | Map output records     | Aggregate Nr                 |   3382772 |
+|  8 | Combiner | Combine input records  | Aggregate Nr                 |   3382772 |
+|  9 | Combiner | Combine output records | Aggregate Nr                 |     35483 |
+| 10 | Combiner | Reduce input records   | Aggregate Nr                 |     35483 |
+| 11 | Combiner | Reduce output records  | Aggregate Nr                 |      6888 |
+| 12 | Combiner | Map input records      | Aggregate Tr                 |   1691386 |
+| 13 | Combiner | Map output records     | Aggregate Tr                 |   3382772 |
+| 14 | Combiner | Combine input records  | Aggregate Tr                 |   3382772 |
+| 15 | Combiner | Combine output records | Aggregate Tr                 |     35483 |
+| 16 | Combiner | Reduce input records   | Aggregate Tr                 |     35483 |
+| 17 | Combiner | Reduce output records  | Aggregate Tr                 |      6888 |
+| 18 | Combiner | Map input records      | Join Nr Tr 3grams            |   1705162 |
+| 19 | Combiner | Map output records     | Join Nr Tr 3grams            |   6779320 |
+| 20 | Combiner | Combine input records  | Join Nr Tr 3grams            |         0 |
+| 21 | Combiner | Combine output records | Join Nr Tr 3grams            |         0 |
+| 22 | Combiner | Reduce input records   | Join Nr Tr 3grams            |   6779320 |
+| 23 | Combiner | Reduce output records  | Join Nr Tr 3grams            |   6760704 |
+| 24 | Combiner | Map input records      | Calculate deleted estimation |   6760704 |
+| 25 | Combiner | Map output records     | Calculate deleted estimation |   6760704 |
+| 26 | Combiner | Combine input records  | Calculate deleted estimation |         0 |
+| 27 | Combiner | Combine output records | Calculate deleted estimation |         0 |
+| 28 | Combiner | Reduce input records   | Calculate deleted estimation |   6760704 |
+| 29 | Combiner | Reduce output records  | Calculate deleted estimation |   1690176 |
+| 30 | Combiner | Map input records      | Sort deleted estimation      |   1690176 |
+| 31 | Combiner | Map output records     | Sort deleted estimation      |   1690176 |
+| 32 | Combiner | Combine input records  | Sort deleted estimation      |         0 |
+| 33 | Combiner | Combine output records | Sort deleted estimation      |         0 |
+| 34 | Combiner | Reduce input records   | Sort deleted estimation      |   1690176 |
+| 35 | Combiner | Reduce output records  | Sort deleted estimation      |   1690176 |
 
 *Without local aggregation:*
 ![No Combiner Input Output Records](https://github.com/itaybou/AWS-Hadoop-EMR-MapReduce-Hebrew-3gram-deleted-estimation/blob/main/statistics/In_Out_No_Combiner.png)
