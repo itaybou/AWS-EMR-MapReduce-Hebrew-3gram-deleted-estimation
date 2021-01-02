@@ -9,6 +9,7 @@ import software.amazon.awssdk.services.s3.model.*;
 import software.amazon.awssdk.services.s3.paginators.ListObjectsV2Iterable;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Locale;
 
@@ -23,6 +24,7 @@ public class Main {
   private static String outBucket; // Get from user file
   private static int instanceCount; // Get from user file
   private static boolean workersLocalAggregation; // Get from user file
+  private static boolean outputSingleFile; // Get from user file
 
   private static S3Client s3;
 
@@ -40,7 +42,8 @@ public class Main {
               .args(
                   HEB_3GRAM_CORPUS,
                   String.format("s3n://%s/output/", outBucket),
-                  String.valueOf(workersLocalAggregation))
+                  String.valueOf(workersLocalAggregation),
+                  String.valueOf(outputSingleFile))
               .build();
 
       StepConfig stepConfig =
@@ -91,6 +94,7 @@ public class Main {
             downloadOutputBucket(jobFlowId, true);
             deleteOutputBucket();
             System.exit(1);
+          case TERMINATING:
           case TERMINATED:
             System.out.println(
                 "Job completed successfully, downloading results output and log files.\n");
@@ -150,18 +154,21 @@ public class Main {
                 page.contents()
                     .forEach(
                         object -> {
-                          System.out.printf(
-                              "Downlading file to %s%s%n",
-                              addOutput ? "output/" : "", object.key());
-                          InputStream stream = getFileStream(outBucket, object.key());
-                          File file =
-                              new File(
-                                  String.format("%s%s", addOutput ? "output/" : "", object.key()));
-                          try {
-                            assert stream != null;
-                            FileUtils.copyInputStreamToFile(stream, file);
-                          } catch (IOException e) {
-                            e.printStackTrace();
+                          if (object.size() > 0) {
+                            System.out.printf(
+                                "Downlading file to %s%s%n",
+                                addOutput ? "output/" : "", object.key());
+                            InputStream stream = getFileStream(outBucket, object.key());
+                            File file =
+                                new File(
+                                    String.format(
+                                        "%s%s", addOutput ? "output/" : "", object.key()));
+                            try {
+                              assert stream != null;
+                              FileUtils.copyInputStreamToFile(stream, file);
+                            } catch (IOException e) {
+                              e.printStackTrace();
+                            }
                           }
                         }));
   }
@@ -228,10 +235,17 @@ public class Main {
         throw new Exception();
       }
       workersLocalAggregation = Boolean.parseBoolean(localAggregation);
+
+      String singleOutput = reader.readLine().toLowerCase(Locale.ROOT);
+      if (!singleOutput.equals("true") && !singleOutput.equals("false")) {
+        System.err.println("Single output indicator must have a true or false value.");
+        throw new Exception();
+      }
+      outputSingleFile = Boolean.parseBoolean(singleOutput);
       return true;
     } catch (Exception e) {
       System.err.println(
-          "\nIllegal user file format.\nExpected the following input file format:\n\n<input-bucket> <input-jar-file-name>\n<output-bucket>\n<worker-instance-count>\n<use-local-aggregation>.");
+          "\nIllegal user file format.\nExpected the following input file format:\n\n<input-bucket> <input-jar-file-name>\n<output-bucket>\n<worker-instance-count>\n<use-local-aggregation>\n<single-file>.");
       return false;
     }
   }

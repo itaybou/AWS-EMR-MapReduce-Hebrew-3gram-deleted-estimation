@@ -2,3 +2,4 @@
 <output-bucket>
 <worker-instance-count (0 < x < 10)>
 <use-local-aggregation (true or false)>
+<single-file (true or false)>

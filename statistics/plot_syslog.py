@@ -53,12 +53,14 @@ def plot_in_out_statistics(value):
    plt.figure(figsize=(40,25))
    ax = sns.barplot(x=stats_df.Value, y=stats_df.Stage, hue=stats_df.Statistic, data=stats_df, orient='h')
    display_figures(ax, statistics=statistics, title=f'Input Output with {value} Statistics')
+   print(stats_df.reset_index(drop=True).to_markdown(tablefmt='github'))
 
 def plot_bytes_statistics(value):
    stats_df = df.loc[(df['Status'] == value) & (df['Statistic'].isin(byte_statistics))]
    plt.figure(figsize=(40,25))
    ax = sns.barplot(x=stats_df.Value, y=stats_df.Stage, hue=stats_df.Statistic, data=stats_df, orient='h')
    display_figures(ax, statistics=byte_statistics, title=f'Byte Statistics with {value}')
+   print(stats_df.reset_index(drop=True).to_markdown(tablefmt='github'))
 
 print(f'Total ngrams read from corpus: {counter_value}')
 plot_in_out_statistics(value='Combiner')

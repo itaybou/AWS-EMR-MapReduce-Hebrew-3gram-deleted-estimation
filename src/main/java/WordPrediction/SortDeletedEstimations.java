@@ -35,6 +35,14 @@ public class SortDeletedEstimations {
         }
     }
 
+    public static class SingleFilePartitionerClass extends Partitioner<ProbabilityThreeGramComparable, NullWritable> {
+
+        @Override
+        public int getPartition(ProbabilityThreeGramComparable key, NullWritable value, int numPartitions) {
+            return 0;
+        }
+    }
+
     public static class ProbabilityThreeGramComparator  extends WritableComparator {
         public ProbabilityThreeGramComparator() {
             super(ProbabilityThreeGramComparable.class, true);
